@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Text to Image</title>
+    <style>
+        /* Style for the container */
+        .image-container {
+            position: relative;
+            width: 400px; /* Adjust the width according to your image */
+        }
+
+        /* Style for the image */
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Style for the text */
+        .text-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Container for the image and text -->
+<div class="image-container">
+    <!-- Image -->
+    <img src="images/ön.jpg" alt="Your Image">
+
+    <!-- Text overlay -->
+    <div class="text-overlay" id="dynamicText">Dynamic Text</div>
+</div>
+
+<!-- Script to update text dynamically -->
+<script>
+    // Get the text element
+    const textElement = document.getElementById('dynamicText');
+
+    // Update the text dynamically
+    // You can set the text based on user input, server data, or any other source
+    const newText = 'Updated Text';
+    textElement.innerText = newText;
+</script>
+
+</body>
+</html>
