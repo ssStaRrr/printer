@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal ID Card</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        #idCardContainer {
+            position: relative;
+            padding: 0;
+            margin: 0;
+        }
+
+        #idCardImage {
+            width: 100%;
+        }
+
+        #personalInfo {
+            position: absolute;
+            top: 200px;  /* Adjust top position */
+            left: 100px; /* Adjust left position */
+            text-align: left;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+<div id="idCardContainer">
+    <img id="idCardImage" src="images/ön.jpg" alt="ID Card Image">
+    <div id="personalInfo" style="color: red;">
+        <p>Name: John Doe</p>
+    </div>
+    <img id="idCardImage" src="images/arka.jpg" alt="ID Card Image">
+</div>
+
+<script>
+    // You can use JavaScript to update the text dynamically
+    document.getElementById('personalInfo').innerHTML = `
+        <p>Name: John Doe</p>
+        <p>DOB: January 1, 1990</p>
+        <p>ID Number: 123456789</p>
+    `;
+
+    window.print()
+</script>
+
+</body>
+</html>
