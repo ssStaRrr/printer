@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interleaved 2 of 5 Barkod Oluşturucu</title>
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
+</head>
+
+<body>
+
+    <div>
+        <label for="interleaved25Data">Veri:</label>
+        <input type="text" id="interleaved25Data" />
+        <button onclick="generateInterleaved25Barcode()">Barkodu Oluştur</button>
+    </div>
+
+    <svg id="interleaved25Barcode"> </svg>
+
+    
+    <script>
+        
+        function generateInterleaved25Barcode() {
+            // Veriyi alın
+            var data = document.getElementById("interleaved25Data").value;
+
+            // Barkod elementini seçin
+            var barcodeElement = document.getElementById("interleaved25Barcode");
+
+            // JsBarcode ile Interleaved 2 of 5 barkodu oluşturun
+            JsBarcode(barcodeElement, data, {
+                format: "CODE128", // Interleaved 2 of 5 için CODE128 kullanabilirsiniz
+                displayValue: true,
+                fontSize: 14,
+                width: 2,
+                height: 50,
+            });
+        }
+      
+    </script>
+
+</body>
+
+</html>

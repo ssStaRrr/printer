@@ -49,6 +49,7 @@
         </div>
     </div>
 
+    <script lang="javascript" src="dist/xlsx.full.min.js"></script>
     <script>
         function parseExcel() {
             //Get the Input Element
@@ -74,8 +75,8 @@
                     const parsedData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
 
                     // Log or use the parsed data as needed
-                    console.log(parsedData[1][1]);
-
+                    let jsonString_parsedData = JSON.stringify(parsedData)
+                    localStorage.setItem("allPersons", jsonString_parsedData)
 
                 }
                 // Read the file as binary
@@ -90,7 +91,7 @@
             window.print()
         })
         const denemeBtn = document.getElementById("deneme")
-        denemeBtn.addEventListener("click", ()=> {
+        denemeBtn.addEventListener("click", () => {
             window.open("personelKart.html")
         })
     </script>

@@ -1,45 +1,304 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
 </head>
 
 <style>
-     
-    .personelInfo{
-            position: absolute;
-            max-width: 100%; /* Set the maximum width for the container */
-            top:59mm;  /* Adjust top position */
-            /* left: 0;  Adjust left position */
-            padding: 3mm;
-            text-align: center;
-            /* font-size: 0.9rem; */
-            color: black;
-            font-family: Arial, sans-serif;
+    .personelInfo {
+        position: absolute;
+        max-width: 100%;
+        /* Set the maximum width for the container */
+        top: 66mm;
+        /* Adjust top position */
+        /* left: 0;  Adjust left position */
+        padding-right: 3mm;
+        padding-left: 3mm;
+        justify-content: center;
+        text-align: center;
+        font-size: 1rem;
+        color: black;
     }
-    .container .column .personelInfo p {
-    font-size: clamp(0.8rem, 6vw, 0.9rem);
-    margin: 0; /* Remove default margin to fit container */
-}
+
+    .personelInfo-2 {
+        position: absolute;
+        max-width: 100%;
+        top: 77mm;
+        padding-right: 3mm;
+        padding-left: 3mm;
+        justify-content: center;
+        text-align: center;
+        font-size: 1rem;
+        color: black;
+
+    }
+
+    .kurumAdi {
+        position: absolute;
+        transform-origin: 0 0;
+        transform: rotate(-90deg);
+        word-spacing: normal;
+        top: 59mm;
+        left: 47mm;
+        font-size: 0.65rem;
+        width: 100%;
+    }
+
+    .identificationNumber {
+        position: absolute;
+        top: 16.5mm;
+        padding-left: 3mm;
+        font-size: 0.9rem;
+    }
+
+    .birthday {
+        position: absolute;
+        top: 32mm;
+        padding-left: 3mm;
+        font-size: 0.9rem;
+    }
+
+    .registrationNumber {
+        position: absolute;
+        top: 32mm;
+        padding-left: 3mm;
+        font-size: 0.9rem;
+    }
+
+    .motherName {
+        position: absolute;
+        top: 40mm;
+        padding-left: 3mm;
+        font-size: 0.9rem;
+    }
+
+    .fatherName {
+        position: absolute;
+        top: 40mm;
+        padding-left: 3mm;
+        font-size: 0.9rem;
+    }
+
+    .dateOfIssue {
+        position: absolute;
+        top: 50mm;
+        padding-left: 3mm;
+        font-size: 0.9rem;
+    }
+
+    .bloodGroup {
+        position: absolute;
+        top: 50mm;
+        font-size: 0.9rem;
+    }
+
+    .container .column .personelInfo p,
+    .container .column .personelInfo-2 p,
+    .container .column .kurumAdi p,
+    .identificationNumber p,
+    .birthday p,
+    .registrationNumber p,
+    .motherName p,
+    .fatherName p,
+    .dateOfIssue p,
+    .bloodGroup p {
+        margin: 0;
+    }
 </style>
+
 <body>
     <div class="container">
         <div class="column">
-            <img class="printable" src="images/ön.jpg" alt="onYuz">
-            <div class="personelInfo">
-                <p>İbrahim Sasmaz kemal cevdet</p>
+            <img src="images/ön.jpg" alt="onYuz">
+            <div style="position:absolute; top:27mm; left: 3mm;">
+                <img src="images/51361413206.jpg" style="width: 115px; height: 127px;" alt="">
+            </div>
+            <div
+                style="position:absolute; width: 34mm; height:20mm; margin: 0; padding: 0; left: 28mm; top: 60.6mm; transform-origin: 0 0; transform: rotate(-90deg);">
+                <svg id="interleaved25Barcode">
+                </svg>
+            </div>
+            <div class="kurumAdi">
+                <p>ZONGULDAK İL SAĞLIK MÜDÜRLÜĞÜ</p>
+            </div>
+            <div class="personelInfo personelOnYuzInfos">
+                <p>İBRAHIM SASMAZ SASMAZ SASMAZ SASMAZ</p> <!--18. uppercase karakterde alt satıra tasıyor -->
+            </div>
+            <div class="personelInfo-2 personelOnYuzInfos">
+                <p>AİLE SAĞLIĞI ELEMANI</p> <!--22. uppercase karakterde alt satıra tasıyor. Not=kucultulmus haliyle -->
             </div>
         </div>
         <div class="column">
             <img class="printable" src="images/arka.jpg" alt="arkaYuz">
+            <div class="identificationNumber" style="width: 86%;">
+                <p>22391744158</p>
+            </div>
+
+            <!-- dogum tarihi ve seri numarasi -->
+            <div class="" style="position: absolute; width: 100%; top: 32mm; display: flex; font-size: 0.9rem;">
+                <div style="width:50%;  padding-left: 5.5mm;">
+                    <p style="margin: 0;">3.08.1975</p>
+                </div>
+                <div style="width: 56%;">
+                    <p style="margin: 0;">H120186 0</p>
+                </div>
+            </div>
+
+            <!-- anne adi ve baba adi -->
+            <div class="" style="position: absolute; width: 100%; top: 40mm; display: flex; font-size: 0.9rem;">
+                <div style="width:50%;  padding-left: 5.5mm;">
+                    <p style="margin: 0;">DURKADIN</p>
+                </div>
+                <div style="width: 56%;">
+                    <p style="margin: 0;">MUHARREM</p>
+                </div>
+            </div>
+
+            <!-- veriliş tarihi ve kan grubu -->
+            <div class="" style="position: absolute; width: 100%; top: 48mm; display: flex; font-size: 0.9rem;">
+                <div style="width:50%;  padding-left: 5.5mm;">
+                    <p style="margin: 0;">02/07/2020</p>
+                </div>
+                <div style="width: 56%;">
+                    <p style="margin: 0;">AB 0</p>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        setTimeout(()=>print(), 3000)
+        window.onload = () => {
+            const getFontSize = (textLength) => {
+                const maxLeng = 18
+                const maxLeng2 = 20
+                if (textLength >= maxLeng && textLength < maxLeng2) {
+                    return `${0.9}rem`
+                }
+                else if (textLength >= maxLeng2) {
+                    return `${0.79}rem`
+                }
+            }
+            const name = document.querySelector(".personelInfo p")
+            const container = document.querySelector(".container")
+
+            // Set text font size of front face of Personel Card
+            name.style.fontSize = getFontSize(name.textContent.length)
+            const names = document.querySelectorAll(".personelOnYuzInfos p")
+            names.forEach(text => {
+                text.style.fontSize = getFontSize(text.textContent.length)
+            })
+
+
+            // Veriyi alın
+            var data = "22391744158";
+            // Barkod elementini seçin
+            var barcodeElement = document.getElementById("interleaved25Barcode");
+            console.log(barcodeElement)
+            // JsBarcode ile Interleaved 2 of 5 barkodu oluşturun
+            JsBarcode(barcodeElement, data, {
+                format: "CODE128", // Interleaved 2 of 5 için CODE128 kullanabilirsiniz
+                displayValue: true,
+                fontSize: 0,
+                width: 1,
+                height: 45,
+            });
+            var gElement = barcodeElement.querySelector("g")
+            if (gElement) {
+                var newTransform = "translate(10, 18)";
+                var currentTransform = gElement.getAttribute("transform") || "";
+                gElement.setAttribute("transform", newTransform)
+                // var textIn_gElement = gElement.querySelector("text")
+                // textIn_gElement.disable;
+            }
+
+            // barcodeElement elementinin width değerini güncelle
+            if (barcodeElement) {
+                barcodeElement.setAttribute("width", "128"); // Yeni genişlik değerini ayarlayın
+            }
+
+            const allPersons = JSON.parse(localStorage.getItem("allPersons"))
+            let persons = []
+            for (let i = 0; i < allPersons.length; i++) {
+
+                persons[i] = {
+                    name: allPersons[i][1],
+                    occupation: allPersons[i][2],
+                    dutyStation: allPersons[i][3],
+                    fatherName: allPersons[i][4],
+                    motherName: allPersons[i][5],
+                    birthday: new Date((allPersons[i][6] - (25567 + 2)) * 86400 * 1000).toLocaleDateString("en-GB", { year: 'numeric', month: 'numeric', day: 'numeric' }),
+                    bloodGroup: allPersons[i][7],
+                    identificationNumber: allPersons[i][8],
+                    registrationNumber: allPersons[i][9],
+                    dateOfIssue: new Date((allPersons[i][10] - (25567 + 2)) * 86400 * 1000).toLocaleDateString("en-GB", { year: 'numeric', month: 'numeric', day: 'numeric' }),
+                    passportPhoto: allPersons[i][11]
+                }
+            }
+
+            for (let j = 0; j < persons.length; j++) {
+                container.innerHTML += `
+            <div class="column">
+            <img class="printable" src="images/ön.jpg" alt="onYuz">
+            <div style="position:absolute; top:27mm; left: 3mm;">
+                <img src="images/${persons[j].passportPhoto}" style="width: 115px; height: 127px;" alt="">
+            </div>
+            <div class="kurumAdi">
+                <p>ZONGULDAK İL SAĞLIK MÜDÜRLÜĞÜ</p>
+            </div>
+            <div class="personelInfo personelOnYuzInfos">
+                <p>${persons[j].name}</p> <!--18. uppercase karakterde alt satıra tasıyor -->
+            </div>
+            <div class="personelInfo-2 personelOnYuzInfos">
+                <p>${persons[j].occupation}</p> <!--22. uppercase karakterde alt satıra tasıyor. Not=kucultulmus haliyle -->
+            </div>
+        </div>
+        <div class="column">
+            <img class="printable" src="images/arka.jpg" alt="arkaYuz">
+            <div class="identificationNumber" style="width: 86%;">
+                <p>${persons[j].identificationNumber}</p>
+            </div>
+
+             <!-- dogum tarihi ve seri numarasi -->
+            <div class="" style="position: absolute; width: 100%; top: 32mm; display: flex; font-size: 0.9rem;">
+                <div style="width:50%;  padding-left: 5.5mm;">
+                     <p style="margin: 0;">${persons[j].birthday}</p>
+                </div>
+                <div style="width: 56%;">
+                     <p style="margin: 0;">${persons[j].registrationNumber}</p>
+                </div>
+             </div>
+
+             <!-- anne adi ve baba adi -->
+             <div class="" style="position: absolute; width: 100%; top: 40mm; display: flex; font-size: 0.9rem;">
+                <div style="width:50%;  padding-left: 5.5mm;">
+                     <p style="margin: 0;">${persons[j].motherName}</p>
+                </div>
+                <div style="width: 56%;">
+                     <p style="margin: 0;">${persons[j].fatherName}</p>
+                </div>
+             </div>
+
+             <!-- veriliş tarihi ve kan grubu -->
+            <div class="" style="position: absolute; width: 100%; top: 48mm; display: flex; font-size: 0.9rem;">
+               <div style="width:50%;  padding-left: 5.5mm;">
+                    <p style="margin: 0;">${persons[j].dateOfIssue}</p>
+               </div>
+               <div style="width: 56%;">
+                    <p style="margin: 0;">${persons[j].bloodGroup}</p>
+               </div>
+            </div>
+        </div>
+            `
+            }
+
+            setTimeout(() => print(), 2000)
+        }
     </script>
 </body>
+
 </html>
