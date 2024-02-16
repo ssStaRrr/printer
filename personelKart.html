@@ -212,8 +212,6 @@
                 var newTransform = "translate(10, 18)";
                 var currentTransform = gElement.getAttribute("transform") || "";
                 gElement.setAttribute("transform", newTransform)
-                // var textIn_gElement = gElement.querySelector("text")
-                // textIn_gElement.disable;
             }
 
             // barcodeElement elementinin width değerini güncelle
@@ -223,6 +221,7 @@
 
             const allPersons = JSON.parse(localStorage.getItem("allPersons"))
             let persons = []
+            console.log(typeof allPersons.length)
             for (let i = 0; i < allPersons.length; i++) {
 
                 persons[i] = {
