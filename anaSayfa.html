@@ -34,7 +34,7 @@
     <div class="inner" style="background-color: rgb(255,255,200); padding-top: 35px;">
         <!-- TOP DIV ELEMENT -->
         <div>
-             <!-- Header -->
+            <!-- Header -->
             <div>
                 <h2 style="text-align: center; color: rgb(219,15,24); margin: 0; padding-bottom: 10px;">PERSONEL KİMLİK
                     KARTI BASTIRMA
@@ -46,7 +46,7 @@
                 style="display: grid; grid-template-columns: 1fr 1.2fr; padding: 10px; height: 50px;  place-items: center;">
                 <div style="border: 1px solid black;">
                     <label for="fileInput">Personel Dosyasını Seçiniz:</label>
-                    <input type="file" id="fileInput" onfocus="selectedFile()" style="margin-bottom: 15px;" accept=".xlsx, .xls"
+                    <input type="file" id="fileInput" style="margin-bottom: 15px;" accept=".xlsx, .xls"
                         onchange="handleFileSelection()" />
                 </div>
                 <div style="background-color: #e0e0e0; border: 1px solid black;">
@@ -57,17 +57,16 @@
             <!-- Personel Data List -->
             <div class="hiddenList" id="hiddenList">
                 <div class="scrolling-list">
-                    <ul>
-                        <li>Item 1</li>
-                        <li>Item 2</li>
-                        <li>Item 3</li>
-                        <li>Item 4</li>
-                        <li>Item 5</li>
-                        <li>Item 6</li>
-                    </ul>
+                    <table class="scrolling-list-table">
+                        <tr>
+                            <th> # </th>
+                            <th> İSİM </th>
+                            <th> MESLEK </th>
+                            <th> GÖREV YERİ </th>
+                        </tr>
+                    </table>
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -89,22 +88,90 @@
             </div>
         </div>
     </div>
+
+
     <script lang="javascript" src="dist/xlsx.full.min.js"></script>
     <script>
         function handleFileSelection() {
-            var fileInput = document.getElementById("fileInput");
-            var hiddenList = document.getElementById("hiddenList")
-            var selectedFile = fileInput.files[0]
 
+            // Element tanımlamaları
+            let fileInput = document.getElementById("fileInput");
+            let hiddenList = document.getElementById("hiddenList")
+            let scrollingListTableElement = document.querySelector(".scrolling-list-table")
+
+            let selectedFile = fileInput.files[0]
             if (selectedFile) {
                 hiddenList.classList.remove("hiddenList")
                 hiddenList.classList.add("displayedList")
+
+                const file = fileInput.files[0]
+
+                //Create a new FileReader
+                const reader = new FileReader()
+
+                // Set up the onload event to handle the file
+                reader.onload = function (e) {
+                    const data = e.target.result
+
+                    // Use SheetJS to parse the Excel file
+                    const workbook = XLSX.read(data, { type: 'binary' });
+                    const sheetName = workbook.SheetNames[0];
+                    const sheet = workbook.Sheets[sheetName];
+
+                    // Extract values from the sheet
+                    const parsedData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+
+                    // Log or use the parsed data as needed
+                    let jsonString_parsedData = JSON.stringify(parsedData)
+                    localStorage.setItem("allPersons", jsonString_parsedData)
+
+                }
+                // Read the file as binary
+                reader.readAsBinaryString(file);
             }
-        }
-    </script>
-    <script>
-        function selectedFile() {
-            console.log("calisiyor")
+            else {
+                alert('Please select an Excel file.');
+            }
+
+            const allPersons = JSON.parse(localStorage.getItem("allPersons"))
+            let persons = []
+            //Localstorage'tan çekilen kullanıcı bilgilerini tek tek ayıklayarak her bir kullanıcıyı, array'in bir elemanı olarak yeni bir array'e kaydetmek
+            for (let i = 0; i < allPersons.length; i++) {
+                persons[i] = {
+                    name: allPersons[i][1],
+                    occupation: allPersons[i][2],
+                    dutyStation: allPersons[i][3],
+                    fatherName: allPersons[i][4],
+                    motherName: allPersons[i][5],
+                    birthday: new Date((allPersons[i][6] - (25567 + 2)) * 86400 * 1000).toLocaleDateString("en-GB", { year: 'numeric', month: 'numeric', day: 'numeric' }),
+                    bloodGroup: allPersons[i][7],
+                    identificationNumber: allPersons[i][8],
+                    registrationNumber: allPersons[i][9],
+                    dateOfIssue: new Date((allPersons[i][10] - (25567 + 2)) * 86400 * 1000).toLocaleDateString("en-GB", { year: 'numeric', month: 'numeric', day: 'numeric' }),
+                    passportPhoto: allPersons[i][11]
+                }
+            }
+            // Listeye satır satır eleman ekleme
+            for (let j = 0; j < persons.length; j++) {
+                
+                //tablo içi satır elemanları oluşturuluyor
+                let trElement = document.createElement('tr')
+                let tdElement1 = document.createElement('td')
+                let tdElement2 = document.createElement('td')
+                let tdElement3 = document.createElement('td')
+                let tdElement4 = document.createElement('td')
+                //tablo içi sutun değerleri atanıyor
+                tdElement2.innerText = `${persons[j].name}`
+                tdElement3.innerText = `${persons[j].occupation}`
+                tdElement4.innerText = `${persons[j].dutyStation}`
+                tdElement1.innerText =  j + 1
+                //sutun elemanları satır elementine ekleniyor
+                trElement.appendChild(tdElement1)
+                trElement.appendChild(tdElement2)
+                trElement.appendChild(tdElement3)
+                trElement.appendChild(tdElement4)
+                scrollingListTableElement.appendChild(trElement)
+            }
         }
     </script>
     <script>

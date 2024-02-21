@@ -51,6 +51,7 @@ header nav ul{
     overflow-y: scroll; /* Enable vertical scrolling */
     max-height: 150px; /* Set a maximum height to limit the size of the list */
     border: 2px solid black; /* Optional: Add border for better visibility */
+    border-radius: 2px;
   }
 
   /* Optional: Style list items for better appearance */
@@ -58,6 +59,9 @@ header nav ul{
     padding: 8px;
     border-bottom: 1px solid #eee;
     list-style-type: none; /* Remove default list styles */
+  }
+  #hiddenList .scrolling-list-table th {
+    text-align: left;
   }
 
 /* bu class'a sahip tüm elementleri ayrı ayrı ayrı yazdıracak css */
